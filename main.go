@@ -1,17 +1,15 @@
 package main
 
 import (
-	"net/http"
+	"fmt"
 
-	"github.com/go-chi/chi/v5"
-	"github.com/go-chi/chi/v5/middleware"
+	"github.com/faysalahmed-dev/go-microservice-order-api/app"
 )
 
 func main() {
-	 r := chi.NewRouter()
-    r.Use(middleware.Logger)
-    r.Get("/", func(w http.ResponseWriter, r *http.Request) {
-        w.Write([]byte("Hello World!"))
-    })
-	 http.ListenAndServe(":3000", r)
+	a := app.App{}
+	err := a.StartApp("localhost:3000");
+	if err != nil {
+		fmt.Println(err)
+	}
 }
